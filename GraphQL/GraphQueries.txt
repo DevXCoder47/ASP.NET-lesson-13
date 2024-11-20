@@ -1,0 +1,29 @@
+﻿query GetProducts($skip: Int, $take: Int) {
+    getProducts(skip: $skip, take: $take) {
+        ...ProductData
+    }
+}
+query GetProduct($id: Int!) {
+    getProduct(id: $id) {
+        ...ProductData
+    }
+}
+mutation CreateProduct($name: String, $price: Double, $description: String) {
+    createProduct(product: { name: $name, price: $price, description: $description }) {
+        ...ProductData
+    }
+}
+mutation UpdateProduct($id: Int!, $name: String, $price: Double, $description: String) {
+    updateProduct(id: $id, product: { name: $name, price: $price, description: $description }) {
+        ...ProductData
+    }
+}
+mutation DeleteProduct($id: Int!) {
+    deleteProduct(id: $id)
+}
+fragment ProductData on Product {
+    id
+    name
+    price
+    description
+}
